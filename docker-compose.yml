@@ -1,0 +1,52 @@
+# ------------------------------------------------------------------------------
+# Oracle Database 23ai Free + APEX + ORDS
+#
+#   docker compose up -d
+#
+# Prvo podizanje traje 3–5 minuta dok se baza sama ne inicijalizuje.
+# Prati napredak sa:  docker compose logs -f oracle
+# ------------------------------------------------------------------------------
+
+services:
+
+  oracle:
+    image: container-registry.oracle.com/database/free:23.9.0.0
+    container_name: oracle-db
+    ports:
+      - "1521:1521"      # SQL*Net
+      - "5500:5500"      # EM Express
+    environment:
+      ORACLE_PWD: ${ORACLE_PWD:-Oracle_2026}     # lozinka za SYS i SYSTEM
+      ORACLE_CHARACTERSET: AL32UTF8              # obavezno za naša slova
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+      # skripte iz ovog foldera se pokreću SAMO pri prvom pravljenju baze
+      - ./sql:/opt/oracle/scripts/startup
+    healthcheck:
+      test: ["CMD", "/opt/oracle/checkDBStatus.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+      start_period: 300s
+    restart: unless-stopped
+
+  ords:
+    image: container-registry.oracle.com/database/ords:24.1.1
+    container_name: oracle-ords
+    ports:
+      - "8080:8080"
+    depends_on:
+      oracle:
+        condition: service_healthy
+    environment:
+      DBHOST: oracle
+      DBPORT: 1521
+      DBSERVICENAME: FREEPDB1
+      ORACLE_PWD: ${ORACLE_PWD:-Oracle_2026}
+    volumes:
+      - ords-config:/etc/ords/config
+    restart: unless-stopped
+
+volumes:
+  oracle-data:
+  ords-config:
