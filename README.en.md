@@ -6,7 +6,7 @@
 
 # Oracle + APEX + ORDS in Docker
 
-A local environment for APEX development — one command, no database installed on your own machine.
+A local environment for APEX development - one command, no database installed on your own machine.
 
 ```bash
 docker compose up -d
@@ -97,7 +97,7 @@ docker compose down -v
 
 ## Adding your own scripts
 
-Everything in the `sql/` folder runs **only when the database is first created** — that's how Oracle's image works. Good for users and an initial schema.
+Everything in the `sql/` folder runs **only when the database is first created** - that's how Oracle's image works. Good for users and an initial schema.
 
 For scripts you need to run repeatedly:
 
@@ -114,15 +114,15 @@ Docker needs more memory. In Docker Desktop → Settings → Resources, raise it
 The database isn't ready yet. Run `docker compose logs oracle` and wait for `DATABASE IS READY TO USE!`.
 
 **Non-ASCII characters show as question marks**
-Check that `ORACLE_CHARACTERSET: AL32UTF8` was set **before the first startup**. If it wasn't — `docker compose down -v` and start over, since the character set is fixed when the database is created.
+Check that `ORACLE_CHARACTERSET: AL32UTF8` was set **before the first startup**. If it wasn't - `docker compose down -v` and start over, since the character set is fixed when the database is created.
 
 **Port 1521 is taken**
 You already have an Oracle running. Change the mapping in `docker-compose.yml` to `"1522:1521"`.
 
 ## License
 
-MIT for the configuration and scripts in this repository. Oracle's images carry their own terms — the Free edition is free for both development and production, within resource limits.
+MIT for the configuration and scripts in this repository. Oracle's images carry their own terms - the Free edition is free for both development and production, within resource limits.
 
 ---
 
-<sub><a href="https://github.com/Cvoki">Luka Cvoro</a> — <a href="mailto:lukac95@gmail.com">lukac95@gmail.com</a></sub>
+<sub><a href="https://github.com/Cvoki">Luka Cvoro</a> - <a href="mailto:lukac95@gmail.com">lukac95@gmail.com</a></sub>
