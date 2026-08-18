@@ -6,7 +6,7 @@
 
 # Oracle + APEX + ORDS u Docker-u
 
-Lokalno okruženje za razvoj APEX aplikacija — jednom komandom, bez instaliranja baze na svoj računar.
+Lokalno okruženje za razvoj APEX aplikacija - jednom komandom, bez instaliranja baze na svoj računar.
 
 ```bash
 docker compose up -d
@@ -18,7 +18,7 @@ Za pet minuta imaš Oracle Database 23ai Free, APEX i ORDS koji rade zajedno.
 
 ## Zašto
 
-Podešavanje Oracle baze i APEX-a na svom računaru je posao od pola dana, a rezultat je nešto što ne možeš da obrišeš bez traga. Ovako sve stoji u kontejnerima: pokvariš — obrišeš, digneš ponovo, čisto.
+Podešavanje Oracle baze i APEX-a na svom računaru je posao od pola dana, a rezultat je nešto što ne možeš da obrišeš bez traga. Ovako sve stoji u kontejnerima: pokvariš - obrišeš, digneš ponovo, čisto.
 
 Korisno i kad radiš na dva projekta sa različitim verzijama, ili kad treba nešto brzo probati a ne diraš razvojnu bazu.
 
@@ -97,7 +97,7 @@ docker compose down -v
 
 ## Kako se dodaju svoje skripte
 
-Sve iz `sql/` foldera se pokreće **samo pri prvom pravljenju baze** — Oracle-ova slika tako radi. Zgodno za korisnike i početnu šemu.
+Sve iz `sql/` foldera se pokreće **samo pri prvom pravljenju baze** - Oracle-ova slika tako radi. Zgodno za korisnike i početnu šemu.
 
 Za skripte koje treba pokretati više puta, koristi:
 
@@ -114,15 +114,15 @@ Docker-u treba više memorije. U Docker Desktop → Settings → Resources podig
 Baza još nije spremna. `docker compose logs oracle` i sačekaj `DATABASE IS READY TO USE!`.
 
 **Naša slova se prikazuju kao znakovi pitanja**
-Proveri da je `ORACLE_CHARACTERSET: AL32UTF8` bio postavljen **pre prvog podizanja**. Ako nije — `docker compose down -v` i ispočetka, jer se karakterset zadaje pri pravljenju baze.
+Proveri da je `ORACLE_CHARACTERSET: AL32UTF8` bio postavljen **pre prvog podizanja**. Ako nije - `docker compose down -v` i ispočetka, jer se karakterset zadaje pri pravljenju baze.
 
 **Port 1521 zauzet**
 Već ti radi neki Oracle. Promeni mapiranje u `docker-compose.yml` na `"1522:1521"`.
 
 ## Licenca
 
-MIT za konfiguraciju i skripte iz ovog repozitorijuma. Oracle-ove slike imaju svoje uslove korišćenja — Free izdanje je besplatno i za razvoj i za produkciju, uz ograničenja resursa.
+MIT za konfiguraciju i skripte iz ovog repozitorijuma. Oracle-ove slike imaju svoje uslove korišćenja - Free izdanje je besplatno i za razvoj i za produkciju, uz ograničenja resursa.
 
 ---
 
-<sub><a href="https://github.com/Cvoki">Luka Cvoro</a> — <a href="mailto:lukac95@gmail.com">lukac95@gmail.com</a></sub>
+<sub><a href="https://github.com/Cvoki">Luka Cvoro</a> - <a href="mailto:lukac95@gmail.com">lukac95@gmail.com</a></sub>
